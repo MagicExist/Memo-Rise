@@ -5,10 +5,10 @@
 - **Project Type**: Greenfield
 - **Start Date**: 2026-06-23T17:18:49Z
 - **Current Phase**: CONSTRUCTION
-- **Current Stage**: U0 Foundation — COMPLETE & committed (`feature/u0-foundation` @ 1b316c5); next → U1 Accounts & Auth (Functional Design)
-- **Current Branch**: feature/u0-foundation (pushed; PR #1 open → main)
-- **Remote**: origin = https://github.com/MagicExist/Memo-Rise.git · main pushed · U0 PR: https://github.com/MagicExist/Memo-Rise/pull/1
-- **Current Unit**: U0 Foundation & Platform (unit 1 of 6)
+- **Current Stage**: U0 MERGED to main (PR #1, squash `b9fc64e`); ready to start → U1 Accounts & Auth (Functional Design)
+- **Current Branch**: main (U0 merged; CI green)
+- **Remote**: origin = https://github.com/MagicExist/Memo-Rise.git · U0 PR #1 MERGED (squash-merged, branch deleted)
+- **Current Unit**: U0 complete (1 of 6). Next: U1 Accounts & Auth.
 
 ## Workspace State
 - **Existing Code**: No
