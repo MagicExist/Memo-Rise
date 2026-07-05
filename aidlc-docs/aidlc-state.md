@@ -5,7 +5,9 @@
 - **Project Type**: Greenfield
 - **Start Date**: 2026-06-23T17:18:49Z
 - **Current Phase**: CONSTRUCTION
-- **Current Stage**: U0 Foundation — Code Generation complete (awaiting approval); U0 unit COMPLETE next → U1 Functional Design
+- **Current Stage**: U0 Foundation — COMPLETE & committed (`feature/u0-foundation` @ 1b316c5); next → U1 Accounts & Auth (Functional Design)
+- **Current Branch**: feature/u0-foundation (pushed; PR #1 open → main)
+- **Remote**: origin = https://github.com/MagicExist/Memo-Rise.git · main pushed · U0 PR: https://github.com/MagicExist/Memo-Rise/pull/1
 - **Current Unit**: U0 Foundation & Platform (unit 1 of 6)
 
 ## Workspace State
@@ -56,7 +58,8 @@ Per unit, in sequence (each fully completed before the next). Legend: [x] done �
 - [x] NFR Requirements (approved 2026-07-05)
 - [x] NFR Design (approved 2026-07-05)
 - [x] Infrastructure Design (light) (approved 2026-07-05)
-- [~] Code Generation (generated — awaiting approval) → US-27/28/29 implemented
+- [x] Code Generation (approved + committed 2026-07-05) → US-27/28/29 implemented
+- [x] **U0 COMPLETE** — committed to `feature/u0-foundation` (1b316c5)
 
 **U1–U5:** pending (same per-unit stage sequence). Next: U1 Accounts & Auth.
 

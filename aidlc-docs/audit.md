@@ -328,7 +328,39 @@ This log captures every user input and AI action with ISO 8601 (UTC) timestamps.
 ## CONSTRUCTION U0 — Code Generation Approval Prompt
 **Timestamp**: 2026-07-05T02:35:30Z
 **AI Prompt**: "U0 code generated (~34 files; backend compiles). Reply 'approve' to complete U0 (and optionally commit it as the U0 PR), or request changes."
-**User Response**: (pending)
-**Context**: CONSTRUCTION — U0 Code Generation (awaiting approval)
+**User Response**: "commit U0"
+**Context**: CONSTRUCTION — U0 Code Generation (approved + committed)
+
+---
+
+## CONSTRUCTION U0 — Committed + inputs/examples observation
+**Timestamp**: 2026-07-05T02:40:00Z
+**User Input**: "commit U0"
+**AI Response**: "Created branch `feature/u0-foundation` (off set-up-ai-dlc) and committed U0 as 1b316c5 — 66 files — with a Conventional Commit message and NO AI author/co-author attribution (author MagicExist), per NFR-12. Scoped the commit to U0 paths only (memorise-back/web/supabase, .github, root config, aidlc-docs/construction + state/audit). **Surfaced finding:** the three `inputs/examples/*` canonical-sample files were empty at HEAD but now contain real content (SQL migration, DeckList.tsx, deck_slice.py) — these were NOT created by the AI during U0 work (populated externally, likely by the user per tech-environment §7). Deliberately EXCLUDED them from the U0 commit; left unstaged for the user to decide. U0 unit complete. Next: U1 Accounts & Auth."
+**Context**: CONSTRUCTION — U0 complete (committed) → U1 (pending)
+
+---
+
+## Canonical Example Files Committed
+**Timestamp**: 2026-07-05T02:45:00Z
+**User Input**: "yes commit the canonical sampel files"
+**AI Response**: "Verified the three `inputs/examples/*` files contain legitimate canonical sample code matching tech-environment.md §7 (SQL-first migration with RLS, FastAPI vertical slice, Next.js TanStack Query component). Committed them as an isolated commit `4b78146` on `feature/u0-foundation`: `docs(examples): add canonical layer samples for construction` — author MagicExist, no AI attribution, 3 files / 260 lines. Only aidlc-docs state/audit tracking edits remain uncommitted."
+**Context**: CONSTRUCTION — U0 complete → U1 (pending)
+
+---
+
+## Remote Setup + Push Handoff
+**Timestamp**: 2026-07-05T02:50:00Z
+**User Input**: "git remote add origin git@github.com:MagicExist/Memo-Rise.git / git branch -M main / git push -u origin main — this is the remote repo empty"
+**AI Response**: "Chose GitHub Flow layout (U0 as a PR) per user. Added remote `origin` = git@github.com:MagicExist/Memo-Rise.git. Fast-forwarded `main` to the planning base `bee6fc9` (did NOT run the user's `git branch -M main`, which would have renamed the current feature branch and conflicted with existing branches). Attempted `git push -u origin main` but it failed with `Host key verification failed` (sandbox has no GitHub known_hosts / no interactive ssh-askpass) — environment limitation. Handed the push off to the user to run via the `!` prefix: `git push -u origin main` and `git push -u origin feature/u0-foundation`, then open the U0 PR. Local branches: main=bee6fc9 (planning base), feature/u0-foundation=4b78146 (U0 + examples)."
+**Context**: Version control — remote configured; push delegated to user (SSH auth)
+
+---
+
+## Remote Push Succeeded via gh (HTTPS)
+**Timestamp**: 2026-07-05T02:55:00Z
+**User Input**: "you cant do that with gh?"
+**AI Response**: "Checked `gh`: authenticated as MagicExist over HTTPS with repo+workflow scopes. Ran `gh auth setup-git`, switched the remote to HTTPS (https://github.com/MagicExist/Memo-Rise.git), and pushed successfully — sidestepping the SSH host-key issue. Pushed `main` (planning base bee6fc9) and `feature/u0-foundation` (U0 + examples). Opened PR #1: https://github.com/MagicExist/Memo-Rise/pull/1 (feature/u0-foundation -> main) with a body describing U0 and stories US-27/28/29. No AI authorship on commits or PR. The `workflow` token scope allowed pushing .github/workflows/ci.yml."
+**Context**: Version control — U0 pushed; PR #1 open
 
 ---
