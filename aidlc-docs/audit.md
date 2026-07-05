@@ -216,8 +216,8 @@ This log captures every user input and AI action with ISO 8601 (UTC) timestamps.
 ## Units Generation — Approval Prompt
 **Timestamp**: 2026-07-05T01:30:30Z
 **AI Prompt**: "Units generation complete: 6 units (U0–U5), all 29 stories mapped. Reply 'approve' to finish INCEPTION and enter the CONSTRUCTION phase (starting with U0 Functional Design), or request changes."
-**User Response**: (pending — user raised a version-control question before approving)
-**Context**: INCEPTION — Units Generation (awaiting approval)
+**User Response**: "APPROVE" (given after the version-control constraint was recorded)
+**Context**: INCEPTION — Units Generation (approved)
 
 ---
 
@@ -226,5 +226,141 @@ This log captures every user input and AI action with ISO 8601 (UTC) timestamps.
 **User Input**: "before approve i have a doub, where can we define how handle the git versioning because at least now, we are not commiting nothing and this is not good so where or in which phase we can dephine the constrains and how and where commit, how and where make branches and how an where make prs and merges, tell me" + answers: "Branching=GitHub Flow; Commits=Conventional Commits; PR=one PR per unit with squash-merge PLUS a strict MANDATORY constraint that the AI never lists itself as author/co-author; Commit docs now=Yes."
 **AI Response**: "Explained where version control belongs in AI-DLC: constraints captured now as an NFR, pipeline designed in U0 Infrastructure Design, implemented in U0 Code Generation, enforced by Build & Test / CI. Added **NFR-12 Version Control & Development Workflow** to requirements.md (GitHub Flow, Conventional Commits, one PR per unit, squash-merge, branch protection with green-CI gate, `.env` hygiene) including the **MANDATORY authorship constraint: no AI author/co-author attribution on any commit or PR**. Updated U0 in unit-of-work.md to own the workflow implementation (extends US-29). About to commit the aidlc-docs to branch `set-up-ai-dlc` with a Conventional-Commits message and NO AI authorship, per the user's rule."
 **Context**: INCEPTION — Units Generation (awaiting approval; VC constraint recorded)
+
+---
+
+## Units Generation Approved — INCEPTION Complete, Entering CONSTRUCTION
+**Timestamp**: 2026-07-05T01:40:00Z
+**User Input**: "APPROVE"
+**AI Response**: "Units Generation approved. INCEPTION phase complete. Marked in `aidlc-state.md`. Entering CONSTRUCTION phase, per-unit loop, starting with U0 Foundation & Platform. Beginning U0 Functional Design (light depth — base data schema, RLS pattern, config/settings). Loading `construction/functional-design.md`."
+**Context**: INCEPTION (complete) → CONSTRUCTION — U0 Functional Design (starting)
+
+---
+
+## CONSTRUCTION U0 — Functional Design Complete
+**Timestamp**: 2026-07-05T01:45:00Z
+**User Input**: "Q1=A (profiles.level stored column); Q2=A (Postgres trigger creates profile row)."
+**AI Response**: "Ran U0 Functional Design at light depth. Recorded answers in the plan. Generated 3 artifacts in `aidlc-docs/construction/u0-foundation/functional-design/`: domain-entities.md (profiles entity + RLS-enabled table pattern + config shape), business-rules.md (R1 RLS, R2 profile defaults, R3 config validation, R4 logging/secrets, R5 error handling/fail-closed, R6 authN gate, R7 version-control incl. no-AI-authorship), and business-logic-model.md (profile-creation trigger flow, JWT verification, config load, logging/error handling; PBT-01 note: limited PBT surface for U0). No frontend-components.md (U0 has no UI). Marked plan checkboxes [x]; updated aidlc-state.md. Presenting the standardized 2-option gate."
+**Context**: CONSTRUCTION — U0 Functional Design (awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — Functional Design Approved / NFR Requirements Starting
+**Timestamp**: 2026-07-05T01:50:00Z
+**User Input**: "approve"
+**AI Response**: "U0 Functional Design approved. Marked complete in `aidlc-state.md`. Proceeding to U0 NFR Requirements. Loading `construction/nfr-requirements.md`."
+**Context**: CONSTRUCTION — U0 Functional Design (complete) → U0 NFR Requirements (starting)
+
+---
+
+## CONSTRUCTION U0 — NFR Requirements Complete
+**Timestamp**: 2026-07-05T01:55:00Z
+**User Input**: "Q1=A (Dependabot + pip-audit + npm audit); Q2=A (generate CycloneDX SBOM in CI)."
+**AI Response**: "Ran U0 NFR Requirements (light — stack pre-settled by tech-environment). Generated `nfr-requirements.md` (U0 security/testing-PBT/maintainability/cost NFRs; perf/availability N/A-light; resiliency not enabled) and `tech-stack-decisions.md` (confirmed stack + CI/tooling: GitHub Actions, Ruff/mypy, ESLint/Prettier/tsc, commitlint, Dependabot+pip-audit+npm audit, CycloneDX SBOM). Resolved both SEC-10 open items (scanning + SBOM = full compliance, no exception). Marked plan checkboxes [x]; updated aidlc-state.md. Presenting 2-option gate."
+**Context**: CONSTRUCTION — U0 NFR Requirements (awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — NFR Requirements Approved / NFR Design Starting
+**Timestamp**: 2026-07-05T02:00:00Z
+**User Input**: "approve"
+**AI Response**: "U0 NFR Requirements approved. Marked complete in `aidlc-state.md`. Proceeding to U0 NFR Design. Loading `construction/nfr-design.md`."
+**Context**: CONSTRUCTION — U0 NFR Requirements (complete) → U0 NFR Design (starting)
+
+---
+
+## CONSTRUCTION U0 — NFR Design Complete
+**Timestamp**: 2026-07-05T02:05:00Z
+**User Input**: "Q1=A (in-process SlowAPI rate limiting for MVP)."
+**AI Response**: "Ran U0 NFR Design (light). Justified skipping resilience/scalability/perf question categories (not applicable to U0 / resiliency off). Generated `nfr-design-patterns.md` (security: RLS, JWT verify, deny-by-default, security headers, CORS allowlist, in-process SlowAPI rate limiting, secrets; reliability: fail-closed config, global error handler, safe external calls; observability: structured logging + correlation id; testing/supply-chain patterns) and `logical-components.md` (Settings, get_current_user_id, SecurityHeaders/CORS/RateLimiter/Logging middleware, GlobalErrorHandler, DB session + RPC base, profiles migration + signup trigger + RLS template, CI/workflow components). Marked plan checkboxes [x]; updated aidlc-state.md. Presenting 2-option gate."
+**Context**: CONSTRUCTION — U0 NFR Design (awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — NFR Design Approved / Infrastructure Design Starting
+**Timestamp**: 2026-07-05T02:10:00Z
+**User Input**: "continue please" (after requesting a phase-status table, which was provided)
+**AI Response**: "U0 NFR Design approved. Proceeding to U0 Infrastructure Design (light — managed platforms). Loading `construction/infrastructure-design.md`."
+**Context**: CONSTRUCTION — U0 NFR Design (complete) → U0 Infrastructure Design (starting)
+
+---
+
+## CONSTRUCTION U0 — Infrastructure Design Complete
+**Timestamp**: 2026-07-05T02:15:00Z
+**User Input**: "Q1=A (single production + Vercel preview deployments + local dev via Supabase CLI)."
+**AI Response**: "Ran U0 Infrastructure Design (light — platforms fixed by tech-env). Justified skipping settled categories (compute/storage/messaging/networking/monitoring all determined or disallowed). Generated `infrastructure-design.md` (logical→service mapping, config/secrets, CI/CD pipeline), `deployment-architecture.md` (topology Mermaid + text, environments, promotion flow, migrations, MVP scaling/DR posture), and `shared-infrastructure.md` (shared services + backend building blocks + data/workflow conventions inherited by U1–U5). Marked plan checkboxes [x]; updated aidlc-state.md. This completes ALL U0 design stages; next is U0 Code Generation. Presenting 2-option gate."
+**Context**: CONSTRUCTION — U0 Infrastructure Design (awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — Infrastructure Design Approved / Code Generation Starting
+**Timestamp**: 2026-07-05T02:20:00Z
+**User Input**: "continue"
+**AI Response**: "U0 Infrastructure Design approved — all U0 design stages complete. Proceeding to U0 Code Generation (Part 1: Planning). Loading `construction/code-generation.md`."
+**Context**: CONSTRUCTION — U0 Infrastructure Design (complete) → U0 Code Generation (starting, Part 1)
+
+---
+
+## CONSTRUCTION U0 — Code Generation Part 1 (Plan) Complete
+**Timestamp**: 2026-07-05T02:25:00Z
+**User Input**: (none — planning step)
+**AI Response**: "Created `aidlc-docs/construction/plans/u0-foundation-code-generation-plan.md` — a 9-step numbered plan (repo scaffold + root config; backend scaffold & core; backend tests + Hypothesis PBT; frontend scaffold; frontend test; Supabase profiles migration + RLS + signup trigger; CI/CD pipeline; docs; deployment artifacts) with exact workspace paths, story traceability (US-27/28/29), ~30–35 files. Marked Part 1 complete in aidlc-state.md."
+**Context**: CONSTRUCTION — U0 Code Generation (Part 1 plan — awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — Code Generation Plan Approval Prompt
+**Timestamp**: 2026-07-05T02:25:30Z
+**AI Prompt**: "U0 code generation plan ready (9 steps, ~30–35 files in workspace root). Reply 'approve' to generate the code, or request changes."
+**User Response**: "approve"
+**Context**: CONSTRUCTION — U0 Code Generation (Part 1 — plan approved)
+
+---
+
+## CONSTRUCTION U0 — Code Generation Part 2 Complete
+**Timestamp**: 2026-07-05T02:35:00Z
+**User Input**: "approve"
+**AI Response**: "Executed all 9 plan steps. Created the directory tree and ~34 files across workspace root, memorise-back/, memorise-web/, memorise-supabase/, and .github/. Backend: FastAPI app factory + core (config fail-closed, security headers/CORS/SlowAPI, JSON logging + correlation id, global error handler), JWT auth dependency, health route, db session + RPC base, pyproject, Dockerfile, .env.example, and tests incl. a Hypothesis property-based test (config validation). Frontend: Next.js/TS scaffold (Tailwind, ESLint/Prettier, Vitest + fast-check), lib/api client (Pattern A), render + property test. Data: profiles migration + RLS + signup trigger + Supabase config. Root/CI: .gitignore, README, CONTRIBUTING, PR template, dependabot, commitlint, GitHub Actions ci.yml (backend/frontend/commitlint/SBOM, merge-blocking). Verified all backend Python files byte-compile. Marked plan checkboxes [x]; stories US-27/28/29 implemented; updated aidlc-state.md. NOT committed yet (awaiting user approval, per the one-PR-per-unit workflow). Presenting 2-option gate."
+**Context**: CONSTRUCTION — U0 Code Generation (awaiting approval)
+
+---
+
+## CONSTRUCTION U0 — Code Generation Approval Prompt
+**Timestamp**: 2026-07-05T02:35:30Z
+**AI Prompt**: "U0 code generated (~34 files; backend compiles). Reply 'approve' to complete U0 (and optionally commit it as the U0 PR), or request changes."
+**User Response**: "commit U0"
+**Context**: CONSTRUCTION — U0 Code Generation (approved + committed)
+
+---
+
+## CONSTRUCTION U0 — Committed + inputs/examples observation
+**Timestamp**: 2026-07-05T02:40:00Z
+**User Input**: "commit U0"
+**AI Response**: "Created branch `feature/u0-foundation` (off set-up-ai-dlc) and committed U0 as 1b316c5 — 66 files — with a Conventional Commit message and NO AI author/co-author attribution (author MagicExist), per NFR-12. Scoped the commit to U0 paths only (memorise-back/web/supabase, .github, root config, aidlc-docs/construction + state/audit). **Surfaced finding:** the three `inputs/examples/*` canonical-sample files were empty at HEAD but now contain real content (SQL migration, DeckList.tsx, deck_slice.py) — these were NOT created by the AI during U0 work (populated externally, likely by the user per tech-environment §7). Deliberately EXCLUDED them from the U0 commit; left unstaged for the user to decide. U0 unit complete. Next: U1 Accounts & Auth."
+**Context**: CONSTRUCTION — U0 complete (committed) → U1 (pending)
+
+---
+
+## Canonical Example Files Committed
+**Timestamp**: 2026-07-05T02:45:00Z
+**User Input**: "yes commit the canonical sampel files"
+**AI Response**: "Verified the three `inputs/examples/*` files contain legitimate canonical sample code matching tech-environment.md §7 (SQL-first migration with RLS, FastAPI vertical slice, Next.js TanStack Query component). Committed them as an isolated commit `4b78146` on `feature/u0-foundation`: `docs(examples): add canonical layer samples for construction` — author MagicExist, no AI attribution, 3 files / 260 lines. Only aidlc-docs state/audit tracking edits remain uncommitted."
+**Context**: CONSTRUCTION — U0 complete → U1 (pending)
+
+---
+
+## Remote Setup + Push Handoff
+**Timestamp**: 2026-07-05T02:50:00Z
+**User Input**: "git remote add origin git@github.com:MagicExist/Memo-Rise.git / git branch -M main / git push -u origin main — this is the remote repo empty"
+**AI Response**: "Chose GitHub Flow layout (U0 as a PR) per user. Added remote `origin` = git@github.com:MagicExist/Memo-Rise.git. Fast-forwarded `main` to the planning base `bee6fc9` (did NOT run the user's `git branch -M main`, which would have renamed the current feature branch and conflicted with existing branches). Attempted `git push -u origin main` but it failed with `Host key verification failed` (sandbox has no GitHub known_hosts / no interactive ssh-askpass) — environment limitation. Handed the push off to the user to run via the `!` prefix: `git push -u origin main` and `git push -u origin feature/u0-foundation`, then open the U0 PR. Local branches: main=bee6fc9 (planning base), feature/u0-foundation=4b78146 (U0 + examples)."
+**Context**: Version control — remote configured; push delegated to user (SSH auth)
+
+---
+
+## Remote Push Succeeded via gh (HTTPS)
+**Timestamp**: 2026-07-05T02:55:00Z
+**User Input**: "you cant do that with gh?"
+**AI Response**: "Checked `gh`: authenticated as MagicExist over HTTPS with repo+workflow scopes. Ran `gh auth setup-git`, switched the remote to HTTPS (https://github.com/MagicExist/Memo-Rise.git), and pushed successfully — sidestepping the SSH host-key issue. Pushed `main` (planning base bee6fc9) and `feature/u0-foundation` (U0 + examples). Opened PR #1: https://github.com/MagicExist/Memo-Rise/pull/1 (feature/u0-foundation -> main) with a body describing U0 and stories US-27/28/29. No AI authorship on commits or PR. The `workflow` token scope allowed pushing .github/workflows/ci.yml."
+**Context**: Version control — U0 pushed; PR #1 open
 
 ---

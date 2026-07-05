@@ -1,0 +1,26 @@
+# Supabase CLI configuration (local development).
+# Schema is SQL-first: create migrations with `supabase migration new`,
+# test locally with `supabase db reset`, apply with `supabase db push`.
+
+project_id = "memorise"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+# Email/password signup with non-blocking verification (Q2 / US-02).
+enable_signup = true
+
+[auth.email]
+enable_confirmations = false  # do not block first use; verification email still sent (US-02)
