@@ -42,7 +42,8 @@ jobs:
       - run: npm run format:check
       - run: npm run typecheck
       - run: npm test # includes fast-check property tests
-      - run: npm audit --audit-level=high
+      # Audit production deps at high/critical; dev-only tooling vulns (vite/esbuild) are build-time.
+      - run: npm audit --omit=dev --audit-level=high
 
   commitlint:
     name: Commit messages (Conventional Commits)

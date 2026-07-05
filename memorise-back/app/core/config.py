@@ -35,4 +35,4 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     """Return the validated settings singleton. Raises on missing/invalid required vars."""
-    return Settings()  # type: ignore[call-arg]
+    return Settings()
