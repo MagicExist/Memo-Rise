@@ -47,7 +47,9 @@ class CorrelationIdMiddleware(BaseHTTPMiddleware):
         correlation_id = request.headers.get(_CORRELATION_HEADER, str(uuid.uuid4()))
         request.state.correlation_id = correlation_id
         logging.getLogger("request").info(
-            "%s %s", request.method, request.url.path,
+            "%s %s",
+            request.method,
+            request.url.path,
             extra={"correlation_id": correlation_id},
         )
         response = await call_next(request)

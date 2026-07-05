@@ -14,7 +14,9 @@ def register_error_handlers(app: FastAPI) -> None:
         correlation_id = getattr(request.state, "correlation_id", None)
         # Log the real error internally (with correlation id); never expose it to the client.
         _logger.exception(
-            "Unhandled error on %s %s", request.method, request.url.path,
+            "Unhandled error on %s %s",
+            request.method,
+            request.url.path,
             extra={"correlation_id": correlation_id},
         )
         return JSONResponse(

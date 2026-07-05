@@ -23,9 +23,7 @@ REQUIRED = [
 
 @settings(suppress_health_check=[HealthCheck.function_scoped_fixture])
 @given(missing=st.sampled_from(REQUIRED))
-def test_missing_required_var_is_rejected(
-    monkeypatch: pytest.MonkeyPatch, missing: str
-) -> None:
+def test_missing_required_var_is_rejected(monkeypatch: pytest.MonkeyPatch, missing: str) -> None:
     # Provide every required var except the randomly chosen missing one.
     for key in REQUIRED:
         monkeypatch.delenv(key, raising=False)
