@@ -1,0 +1,230 @@
+# AI-DLC Audit Log
+
+This log captures every user input and AI action with ISO 8601 (UTC) timestamps. **Append-only** — never overwrite existing entries.
+
+---
+
+## Workflow Start — Initial User Request
+**Timestamp**: 2026-06-23T17:18:49Z
+**User Input**: "Using AI-DLC, I want to start a new project. Please read inputs/vision.md and inputs/tech-environment.md, then begin the AIDLC workflow."
+**AI Response**: "Resolved rule details directory to `.aidlc-rule-details/`. Loaded common rules (process-overview, session-continuity, content-validation, question-format-guide, depth-levels) and the welcome message. Loaded the three extension opt-in prompts (security, resiliency, property-based testing). Read `inputs/vision.md` and `inputs/tech-environment.md`. Displayed the AI-DLC welcome message and began Workspace Detection."
+**Context**: INCEPTION — Workflow start
+
+---
+
+## Workspace Detection
+**Timestamp**: 2026-06-23T17:18:49Z
+**User Input**: (none — informational stage, no approval required)
+**AI Response**: "No existing `aidlc-docs/aidlc-state.md` found. Scanned workspace: no source files (.py/.ts/.tsx/.sql/etc.) and no build files anywhere except the rule details and inputs. Directories `memorise-web/`, `memorise-back/`, `memorise-supabase/`, and `docs/` are empty; `inputs/examples/` contains three empty placeholder files (0001_create_decks.sql, deck_slice.py, DeckList.tsx). Determined project type = **Greenfield** (brownfield=false); Reverse Engineering NOT needed. Created `aidlc-docs/` structure, `aidlc-state.md`, and this audit log. Workspace root = /home/johhan/Documents/program/MemoRise. Proceeded automatically to Requirements Analysis."
+**Context**: INCEPTION — Workspace Detection (complete)
+
+---
+
+## Requirements Analysis — Intent Analysis & Clarifying Questions Presented
+**Timestamp**: 2026-06-23T17:18:49Z
+**User Input**: (none yet — awaiting answers at the gate)
+**AI Response**: "Performed intent analysis — Request type: New Project; Clarity: Clear vision with explicitly-flagged open questions; Scope: System-wide (frontend + backend + data + AI); Complexity: Complex. Selected **Comprehensive** requirements depth. Created `aidlc-docs/inception/requirements/requirement-verification-questions.md` with 16 questions: 13 product/requirement questions (onboarding & accounts, core learning engine, gamification, AI assistant, technical & project context) plus the 3 mandatory extension opt-in prompts (Security Baseline, Resiliency Baseline, Property-Based Testing). Presented the file to the user and STOPPED at the gate per requirements-analysis.md Step 6."
+**Context**: INCEPTION — Requirements Analysis (awaiting user answers)
+
+---
+
+## Requirements Analysis — Session Resumed
+**Timestamp**: 2026-07-05T00:00:00Z
+**User Input**: "so in this repo i was triying aidlc form aws labs, but idont know how to continue with it, can you analize specially the requirements folder there is a file that i left in progress"
+**AI Response**: "Analyzed workspace state. Confirmed the workflow was paused at the Requirements Analysis gate (`requirement-verification-questions.md`) with all 16 `[Answer]:` tags blank. Read `inputs/vision.md` and `inputs/tech-environment.md` for context. Explained the current AI-DLC state and identified the unanswered questions as the sole blocker. Presented the 16 questions to the user for answers (genuine judgment calls asked directly; user chose to review the recommended-default questions individually rather than accept them wholesale)."
+**Context**: INCEPTION — Requirements Analysis (resuming at Step 6 gate)
+
+---
+
+## Requirements Analysis — User Answers Received (Q1–Q16)
+**Timestamp**: 2026-07-05T00:05:00Z
+**User Input**: "Q1=A (Account required from start); Q2=A (send verification email, don't block first use); Q3=A (English only); Q4=A (SM-2 as-is); Q5=A (Four buttons: Again/Hard/Good/Easy); Q6=A (Hard reset streak to 0); Q7=A (Fixed XP per review); Q8=C (Claude Opus, kept configurable); Q9=A (No enforced AI cap, meter only); Q10=B (~5,000 char paste limit); Q11=A (reuse existing memorise-web/memorise-back/memorise-supabase folders); Q12=A (billing out of MVP, meterable only); Q13=A (mobile-responsive web); Q14=A (Security extension enforced); Q15=B (Resiliency extension skipped); Q16=A (Property-Based Testing enforced, full)."
+**AI Response**: "Recorded all 16 answers into `requirement-verification-questions.md`. Updated `aidlc-state.md` Extension Configuration: Security Baseline = Yes, Resiliency Baseline = No, Property-Based Testing = Yes (full enforcement). Performed deferred rule loading for the two opted-in extensions (`security-baseline.md`, `property-based-testing.md`); did NOT load `resiliency-baseline.md` (opted out). No blocking ambiguities found in the answers; proceeded to Step 7 (generate requirements document)."
+**Context**: INCEPTION — Requirements Analysis (gate passed)
+
+---
+
+## Requirements Analysis — Requirements Document Generated
+**Timestamp**: 2026-07-05T00:10:00Z
+**User Input**: (none — generation step)
+**AI Response**: "Generated `aidlc-docs/inception/requirements/requirements.md` at Comprehensive depth: intent-analysis summary, 40+ functional requirements (FR) with acceptance criteria across accounts/decks/cards/review/scheduling/gamification/AI/dashboard, non-functional requirements (NFR) covering performance/usability/observability/cost, a Security Requirements section mapped to SECURITY-01..15, a Testing & PBT section mapped to PBT-01..10, traceability to the vision success metrics, and recorded assumptions. Validated content per content-validation.md (no Mermaid/ASCII diagrams requiring validation). Updated `aidlc-state.md` stage status to 'Requirements document generated — awaiting approval'. Presenting the requirements approval gate per requirements-analysis.md Step 9."
+**Context**: INCEPTION — Requirements Analysis (awaiting approval)
+
+---
+
+## Requirements Analysis — Approval Received
+**Timestamp**: 2026-07-05T00:20:00Z
+**User Input**: "approve"
+**AI Response**: "Requirements approved by user. Marked Requirements Analysis stage complete in `aidlc-state.md`. Proceeding to the User Stories stage. Performed the intelligent assessment: User Stories is warranted (new user-facing product, multiple personas — students / self-directed learners / lapsed users, complex multi-scenario requirements). Beginning User Stories Part 1 (Planning): presenting the story plan and planning questions at a gate before generating stories."
+**Context**: INCEPTION — Requirements Analysis (complete) → User Stories (starting)
+
+---
+
+## User Stories — Part 1 Planning (Assessment + Plan + Answers)
+**Timestamp**: 2026-07-05T00:25:00Z
+**User Input**: "Q1=A (Hybrid breakdown); Q2=A (one story per capability); Q3=A (Gherkin acceptance criteria); Q4=A (three vision personas). [Q5 not asked in the batch; recommended default A applied — fold SEC-*/TST-* into feature-story ACs plus a few technical-enabler stories.]"
+**AI Response**: "Wrote `aidlc-docs/inception/plans/user-stories-assessment.md` (Execute = Yes; all High-Priority indicators met). Wrote `aidlc-docs/inception/plans/story-generation-plan.md` with the methodology checklist, breakdown-approach options, mandatory artifacts, and 5 planning questions. Recorded answers Q1–Q5 (all = A) into the plan and its Answers Summary. No ambiguities found in the answers (Step 9 analysis clean). Logging this plan-approval prompt and awaiting explicit approval before Part 2 generation."
+**Context**: INCEPTION — User Stories (Part 1 Planning — awaiting plan approval)
+
+---
+
+## User Stories — Plan Approval Prompt
+**Timestamp**: 2026-07-05T00:25:30Z
+**User Input**: (pending)
+**AI Response (prompt text)**: "Story generation plan complete. Approach: Hybrid (feature epics, persona-tagged, requirement-traced); ~25–35 stories (one per capability); Gherkin acceptance criteria; three vision personas; security/testing folded into ACs plus enabler stories. Reply 'approve' to generate `personas.md` and `stories.md`, or request changes."
+**Context**: INCEPTION — User Stories (Part 1 Planning — awaiting plan approval)
+
+---
+
+## User Stories — Plan Approved
+**Timestamp**: 2026-07-05T00:30:00Z
+**User Input**: "approve"
+**AI Response**: "Story generation plan approved. Proceeding to Part 2 (Generation)."
+**Context**: INCEPTION — User Stories (Part 2 — generating)
+
+---
+
+## User Stories — Part 2 Generation Complete
+**Timestamp**: 2026-07-05T00:35:00Z
+**User Input**: (none — generation step)
+**AI Response**: "Generated `personas.md` (3 personas: Sofía/student, Marco/self-directed, Elena/lapsed, with metric mapping and the hard-reset streak tension flagged) and `stories.md` (29 INVEST stories across 8 epics with Gherkin acceptance criteria, persona tags, and traceability to FR-*/NFR-*/SEC-*/TST-*/PBT-* IDs). Security folded into ACs plus enabler stories US-27/28/29; property-based scenarios embedded in US-15/16/17. Marked all plan checkboxes [x]; updated aidlc-state.md. Awaiting approval before Workflow Planning."
+**Context**: INCEPTION — User Stories (Part 2 — awaiting approval)
+
+---
+
+## User Stories — Completion Approval Prompt
+**Timestamp**: 2026-07-05T00:35:30Z
+**User Input**: (pending)
+**AI Response (prompt text)**: "User stories complete: 3 personas + 29 stories with Gherkin acceptance criteria and full requirement traceability. Reply 'approve' to proceed to Workflow Planning, or request changes."
+**Context**: INCEPTION — User Stories (Part 2 — awaiting approval)
+
+---
+
+## User Stories — Review Question re US-01 Input Validation
+**Timestamp**: 2026-07-05T00:40:00Z
+**User Input**: "in US-01 — Sign up with email and password we can specify some simbols that we dont allow in the email an password too, to avoid security breach? do you think that this change is important or maybe is too much specification"
+**AI Response**: "Advised against character blocklisting: for passwords it is an anti-pattern (NIST 800-63B / OWASP — allow all printable + Unicode; passwords are hashed, never executed, so no injection risk; blocklists reduce entropy and break password managers), and for emails a symbol blocklist causes false rejections of valid addresses (e.g. plus-addressing) while real injection protection comes from parameterized queries + escaping (SEC-4). Noted the effective protections are already in US-01/SEC-4/SEC-10. Offered an optional refinement to make correct validation explicit. User chose to LEAVE US-01 AS IS — no change made."
+**Context**: INCEPTION — User Stories (Part 2 — awaiting approval; no change)
+
+---
+
+## User Stories — Change Request (per-deck review sessions)
+**Timestamp**: 2026-07-05T00:45:00Z
+**User Input**: "we have a story that allows the user to study each seassion by specific deck, not like a general session where you gonna study all your due and new cards, its more like the user also can study a sesision by specific deck, weh ave something?"
+**AI Response**: "Confirmed the app is already deck-scoped (FR-16 'due today queue per deck', US-08 deck selection, US-13 scenario). Clarified that a global cross-deck session was never in scope (matches the vision). Per user's choices: (1) rewrote US-13 to be explicitly per-deck — retitled 'Review a specific deck's due cards', added a 'Choose a deck to study' scenario and an explicit 'cards from other decks never appear' assertion, and a note that a combined all-decks session is OUT of MVP; (2) added FR-14 AC3 in requirements.md recording that review sessions are single-deck-scoped and a cross-deck session is out of MVP scope. User declined adding a global all-decks session story (per-deck only)."
+**Context**: INCEPTION — User Stories (Part 2 — awaiting approval)
+
+---
+
+## Requirements Analysis — Change Request (AI model)
+**Timestamp**: 2026-07-05T00:15:00Z
+**User Input**: "can we change that insead of have claude opus in the AI chat, can we change it by sonnet that is a better cheap model please"
+**AI Response**: "Applied change request. Updated the AI card-generation model decision from Claude Opus (Q8=C) to Claude Sonnet (Q8=B). Edited `requirement-verification-questions.md` (Q8 answer) and `requirements.md` in all locations: §2.1 decisions table, FR-21 + AC3, §7 traceability, §8 assumption A5, and §10 summary. Model remains configurable via env (Sonnet default; upgrade to Opus / downgrade to Haiku without a code change). No other requirements affected. Still awaiting approval to proceed to User Stories."
+**Context**: INCEPTION — Requirements Analysis (awaiting approval)
+
+---
+
+## User Stories — Change Request (US-19 card count + usage-limit clarification)
+**Timestamp**: 2026-07-05T00:50:00Z
+**User Input**: "US-19 — Generate draft cards from pasted text here in this US do you think that is important spedcify that the user also can limit the decks generated by the AI like if he dont want 20 instead only 5, also are we limiting the generated cards by the usage limite AI plan payde by the user right?"
+**AI Response**: "Two points. (1) Card count: added an optional user-specified target count to US-19 (new 'Choose how many cards to generate' scenario) and requirements FR-21 AC5 — user may request N cards (e.g. 5), else the assistant decides, always capped at ~20; fewer cards lower cost. (2) Usage limit: corrected a misconception — the MVP has NO paid plan and NO enforced AI cap (Q9=No cap, Q12=billing out); generation is only metered per user (US-25/FR-24) so a limit/paid tier can be added later without redesign. Cost is bounded now by the ~5,000-char input cap and the ~20-card output cap. Added a clarifying note to US-19. User chose: add optional target count = Yes; usage limit = keep meter-only with the forward note (no enforced cap now)."
+**Context**: INCEPTION — User Stories (Part 2 — awaiting approval)
+
+---
+
+## User Stories — Approval Received
+**Timestamp**: 2026-07-05T00:55:00Z
+**User Input**: "okey approve"
+**AI Response**: "User Stories approved (3 personas + 29 stories, including the US-13 per-deck clarification and US-19 card-count refinement). Marked User Stories stage complete in `aidlc-state.md`. Proceeding to Workflow Planning (always-execute stage). Loading `inception/workflow-planning.md` and `common/content-validation.md`."
+**Context**: INCEPTION — User Stories (complete) → Workflow Planning (starting)
+
+---
+
+## Workflow Planning — Execution Plan Generated
+**Timestamp**: 2026-07-05T01:00:00Z
+**User Input**: (none — generation step)
+**AI Response**: "Performed scope/impact/risk analysis (greenfield; user-facing + structural + data + API + NFR impact = all Yes; Risk = Medium; rollback Easy; testing Moderate). Determined stages: EXECUTE Application Design, Units Generation, Functional Design, NFR Requirements, NFR Design, Infrastructure Design (light), Code Generation (always), Build and Test (always); SKIP Reverse Engineering (greenfield). Created `aidlc-docs/inception/plans/execution-plan.md` with a Mermaid workflow diagram (validated) plus a text alternative per content-validation.md. Updated `aidlc-state.md` with the Execution Plan Summary and per-stage EXECUTE/SKIP markers. Awaiting plan approval."
+**Context**: INCEPTION — Workflow Planning (awaiting approval)
+
+---
+
+## Workflow Planning — Approval Prompt
+**Timestamp**: 2026-07-05T01:00:30Z
+**AI Prompt**: "Ready to proceed with this plan? Execute the 6 design stages + Code Generation + Build and Test; skip Reverse Engineering. Next stage: Application Design. Reply 'approve' or request changes."
+**User Response**: "approve"
+**Status**: Approved
+**Context**: INCEPTION — Workflow Planning (8 stages to execute, 1 skipped)
+
+---
+
+## Workflow Planning — Approved / Application Design Starting
+**Timestamp**: 2026-07-05T01:05:00Z
+**User Input**: "approve"
+**AI Response**: "Execution plan approved. Marked Workflow Planning complete in `aidlc-state.md`. Proceeding to Application Design (first EXECUTE stage). Loading `inception/application-design.md`."
+**Context**: INCEPTION — Workflow Planning (complete) → Application Design (starting)
+
+---
+
+## Application Design — Plan Questions Answered
+**Timestamp**: 2026-07-05T01:10:00Z
+**User Input**: "Q1=A (one service per domain); Q2=A (pure Python math + atomic rate_card RPC persistence); Q3=A (dedicated pure-logic domain module)."
+**AI Response**: "Wrote `application-design-plan.md` with 3 context-appropriate design questions (most architecture already fixed by tech-environment.md). Recorded answers Q1–Q3 (all = A). No ambiguities. Proceeding to generate design artifacts."
+**Context**: INCEPTION — Application Design (generating)
+
+---
+
+## Application Design — Artifacts Generated
+**Timestamp**: 2026-07-05T01:15:00Z
+**User Input**: (none — generation step)
+**AI Response**: "Generated 5 artifacts in `aidlc-docs/inception/application-design/`: components.md (backend services/domain/data + frontend components), component-methods.md (signatures incl. domain pure funcs and rate_card RPC wrapper), services.md (service catalog + the atomic review-rating and AI-generation orchestrations), component-dependency.md (dependency matrix + Mermaid data-flow with text alternative), and application-design.md (consolidated + design decisions Q1–Q3 + requirement traceability). Design honors Pattern A, one-service-per-domain, pure domain module for SM-2/gamification (PBT seam), and security isolation (SEC-9/11). Marked plan checkboxes [x]; updated aidlc-state.md. Awaiting approval before Units Generation."
+**Context**: INCEPTION — Application Design (awaiting approval)
+
+---
+
+## Application Design — Approval Prompt
+**Timestamp**: 2026-07-05T01:15:30Z
+**AI Prompt**: "Application design complete (5 artifacts). Reply 'approve' to proceed to Units Generation, or request changes."
+**User Response**: "approve"
+**Context**: INCEPTION — Application Design (approved)
+
+---
+
+## Application Design — Approved / Units Generation Starting
+**Timestamp**: 2026-07-05T01:20:00Z
+**User Input**: "approve"
+**AI Response**: "Application Design approved. Marked complete in `aidlc-state.md`. Proceeding to Units Generation. Loading `inception/units-generation.md`."
+**Context**: INCEPTION — Application Design (complete) → Units Generation (starting)
+
+---
+
+## Units Generation — Part 1 Plan Answered
+**Timestamp**: 2026-07-05T01:25:00Z
+**User Input**: "Q1=A (vertical feature slices); Q2=A (Foundation unit U0 first); Q3=A (merge Review + Gamification into one unit)."
+**AI Response**: "Wrote `unit-of-work-plan.md` with proposed 6-unit decomposition and 3 boundary questions. Recorded answers Q1–Q3 (all = A). No ambiguities. Result: 6 units U0–U5. Proceeding to Part 2 generation."
+**Context**: INCEPTION — Units Generation (Part 2 — generating)
+
+---
+
+## Units Generation — Part 2 Artifacts Generated
+**Timestamp**: 2026-07-05T01:30:00Z
+**User Input**: (none — generation step)
+**AI Response**: "Generated `unit-of-work.md` (6 units U0–U5 as vertical feature slices with responsibilities, code-organization strategy, and build order), `unit-of-work-dependency.md` (dependency matrix + build order Mermaid with text alternative; critical path U0→U1→U2→U3→U5), and `unit-of-work-story-map.md` (all 29 stories mapped 1:1 to units: U0=3, U1=4, U2=8, U3=6, U4=4, U5=4). Marked plan checkboxes [x]; updated aidlc-state.md Construction section with the per-unit loop over 6 units. Awaiting approval before entering the CONSTRUCTION phase."
+**Context**: INCEPTION — Units Generation (awaiting approval)
+
+---
+
+## Units Generation — Approval Prompt
+**Timestamp**: 2026-07-05T01:30:30Z
+**AI Prompt**: "Units generation complete: 6 units (U0–U5), all 29 stories mapped. Reply 'approve' to finish INCEPTION and enter the CONSTRUCTION phase (starting with U0 Functional Design), or request changes."
+**User Response**: (pending — user raised a version-control question before approving)
+**Context**: INCEPTION — Units Generation (awaiting approval)
+
+---
+
+## Units Generation — Version Control Constraint Added (pre-approval)
+**Timestamp**: 2026-07-05T01:35:00Z
+**User Input**: "before approve i have a doub, where can we define how handle the git versioning because at least now, we are not commiting nothing and this is not good so where or in which phase we can dephine the constrains and how and where commit, how and where make branches and how an where make prs and merges, tell me" + answers: "Branching=GitHub Flow; Commits=Conventional Commits; PR=one PR per unit with squash-merge PLUS a strict MANDATORY constraint that the AI never lists itself as author/co-author; Commit docs now=Yes."
+**AI Response**: "Explained where version control belongs in AI-DLC: constraints captured now as an NFR, pipeline designed in U0 Infrastructure Design, implemented in U0 Code Generation, enforced by Build & Test / CI. Added **NFR-12 Version Control & Development Workflow** to requirements.md (GitHub Flow, Conventional Commits, one PR per unit, squash-merge, branch protection with green-CI gate, `.env` hygiene) including the **MANDATORY authorship constraint: no AI author/co-author attribution on any commit or PR**. Updated U0 in unit-of-work.md to own the workflow implementation (extends US-29). About to commit the aidlc-docs to branch `set-up-ai-dlc` with a Conventional-Commits message and NO AI authorship, per the user's rule."
+**Context**: INCEPTION — Units Generation (awaiting approval; VC constraint recorded)
+
+---
