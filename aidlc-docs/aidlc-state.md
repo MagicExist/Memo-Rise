@@ -4,8 +4,9 @@
 - **Project Name**: MemoRise
 - **Project Type**: Greenfield
 - **Start Date**: 2026-06-23T17:18:49Z
-- **Current Phase**: INCEPTION
-- **Current Stage**: Units Generation (artifacts generated — awaiting approval)
+- **Current Phase**: CONSTRUCTION
+- **Current Stage**: U0 Foundation — Code Generation complete (awaiting approval); U0 unit COMPLETE next → U1 Functional Design
+- **Current Unit**: U0 Foundation & Platform (unit 1 of 6)
 
 ## Workspace State
 - **Existing Code**: No
@@ -42,17 +43,22 @@
 - [x] User Stories (approved 2026-07-05 — 29 stories + 3 personas)
 - [x] Workflow Planning (approved 2026-07-05)
 - [x] Application Design — EXECUTE (approved 2026-07-05)
-- [~] Units Generation — EXECUTE (6 units defined; awaiting approval)
+- [x] Units Generation — EXECUTE (approved 2026-07-05 — 6 units)
+- [x] **INCEPTION PHASE COMPLETE** (2026-07-05)
 
 ### 🟢 CONSTRUCTION PHASE (per-unit loop over 6 units; build order U0→U5)
 **Units:** U0 Foundation · U1 Accounts & Auth · U2 Decks & Cards · U3 Review/Scheduling/Gamification · U4 AI Assistant · U5 Dashboard & Onboarding
 
-Per unit, in sequence (each fully completed before the next):
-- [ ] Functional Design — EXECUTE
-- [ ] NFR Requirements — EXECUTE
-- [ ] NFR Design — EXECUTE
-- [ ] Infrastructure Design — EXECUTE (light)
-- [ ] Code Generation — EXECUTE (always)
+Per unit, in sequence (each fully completed before the next). Legend: [x] done · [~] awaiting approval · [ ] pending
+
+**U0 Foundation & Platform:**
+- [x] Functional Design (approved 2026-07-05)
+- [x] NFR Requirements (approved 2026-07-05)
+- [x] NFR Design (approved 2026-07-05)
+- [x] Infrastructure Design (light) (approved 2026-07-05)
+- [~] Code Generation (generated — awaiting approval) → US-27/28/29 implemented
+
+**U1–U5:** pending (same per-unit stage sequence). Next: U1 Accounts & Auth.
 
 After all units:
 - [ ] Build and Test — EXECUTE (always)

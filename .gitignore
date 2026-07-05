@@ -1,0 +1,40 @@
+# --- Secrets / env ---
+.env
+.env.*
+!.env.example
+
+# --- Python (memorise-back) ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+*.egg-info/
+dist/
+build/
+
+# --- Node / Next.js (memorise-web) ---
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+pnpm-debug.log*
+
+# --- Supabase ---
+memorise-supabase/.branches/
+memorise-supabase/.temp/
+
+# --- SBOM / build artifacts ---
+sbom*.json
+sbom*.xml
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

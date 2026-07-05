@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  backend:
+    name: Backend (lint, types, tests + PBT, audit)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memorise-back
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: pip install --upgrade pip && pip install -e ".[dev]" pip-audit
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy app
+      - run: pytest # includes Hypothesis property-based tests; seeds logged (print_blob)
+      - run: pip-audit
+
+  frontend:
+    name: Frontend (lint, types, tests + PBT, audit)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: memorise-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: memorise-web/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test # includes fast-check property tests
+      - run: npm audit --audit-level=high
+
+  commitlint:
+    name: Commit messages (Conventional Commits)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install --no-save @commitlint/cli @commitlint/config-conventional
+      - run: npx commitlint --from origin/${{ github.base_ref }} --to HEAD --verbose
+
+  sbom:
+    name: SBOM (CycloneDX)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Pin to an exact release SHA/tag when wiring this up (SEC-10/SEC-13).
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          format: cyclonedx-json
+          output-file: sbom.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json
