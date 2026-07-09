@@ -28,8 +28,9 @@ def create_app() -> FastAPI:
     app.add_exception_handler(RateLimitExceeded, _rate_limit_handler)
     app.add_middleware(SlowAPIMiddleware)
 
-    # Cross-cutting middleware
-    app.add_middleware(SecurityHeadersMiddleware)
+    # Cross-cutting middleware. CSP connect-src is widened to the specific Supabase origin so the
+    # browser can reach Supabase Auth directly (U1) — least-privilege, no wildcard.
+    app.add_middleware(SecurityHeadersMiddleware, connect_src=[settings.supabase_url])
     app.add_middleware(CorrelationIdMiddleware)
     app.add_middleware(
         CORSMiddleware,

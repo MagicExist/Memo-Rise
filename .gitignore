@@ -22,12 +22,14 @@ node_modules/
 out/
 coverage/
 *.tsbuildinfo
+next-env.d.ts
 npm-debug.log*
 pnpm-debug.log*
 
-# --- Supabase ---
-memorise-supabase/.branches/
-memorise-supabase/.temp/
+# --- Supabase (CLI local state) ---
+memorise-supabase/supabase/.branches/
+memorise-supabase/supabase/.temp/
+memorise-supabase/supabase/.env
 
 # --- SBOM / build artifacts ---
 sbom*.json

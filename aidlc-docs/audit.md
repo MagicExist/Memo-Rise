@@ -380,3 +380,121 @@ This log captures every user input and AI action with ISO 8601 (UTC) timestamps.
 **Context**: CONSTRUCTION — U0 merged to main; ready for U1
 
 ---
+
+## Session Resume — Start U1 Functional Design
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: "I want to start again working here, I remember that we want to start the unit 1, can you check it out for me"
+**AI Response**: "Resumed from aidlc-state.md. Confirmed U0 complete/merged (PR #1, squash b9fc64e, CI green). Next unit per build order = U1 Accounts & Auth; first per-unit stage = Functional Design. Loaded prior artifacts: unit-of-work.md, stories.md (US-01..04), unit-of-work-story-map.md, services.md, components.md, component-methods.md, U0 code summary + migrations (0001/0002) + deps.py. Noted U0 already provides the deny-by-default JWT guard, profiles table+RLS, and the signup→profile trigger (so U1's profiles-link data task is already done). Loaded enabled extensions: Security Baseline + Property-Based Testing (both enforced). Created the U1 Functional Design plan with checkboxes and 8 embedded clarifying questions at aidlc-docs/construction/plans/u1-accounts-auth-functional-design-plan.md (Q1 auth call-path is the architectural keystone; Q2 session/SSR; Q3 brute-force location; Q4 password policy/breach check; Q5 email verification scope; Q6 authenticated landing surface; Q7 logout scope; Q8 PBT-01 stance). Awaiting user answers before generating functional-design artifacts."
+**Context**: CONSTRUCTION — U1 Accounts & Auth — Functional Design (Planning); questions pending user input
+
+---
+
+## U1 Functional Design — Questions Answered + Artifacts Generated
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: "okey as you know here we are usin AI-dlc from aws, also one way that i like to work with you with those files decitions and question is that you help me to answere, its easy just show me 3 or 4 options for that question and i ill gonna tell you what is the best or i gonna specify if any of those question dont like me, so help me answer those questions please lets work together here" / "also always tell me which answere do you recommend lets start again" / [answered all 8 via interactive options] — Q1=A Frontend-direct, Q2=A @supabase/ssr cookies, Q3=A Supabase built-in rate limiting, Q4=A Supabase built-in leaked-password+min-length, Q5=A send-but-don't-gate verification, Q6=A minimal authenticated placeholder, Q7=A local logout, Q8=A minimal PBT surface.
+**AI Response**: "Presented the 8 U1 functional-design questions interactively (AskUserQuestion) in two batches of 4, each with an explicit recommendation; saved the user's working-style preference to memory (help-answer-decision-files: present options + always recommend, then write answers back to the file). User selected the recommended option for all 8 (coherent 'Supabase owns auth' design). No contradictions/ambiguities detected. Wrote answers back into u1-accounts-auth-functional-design-plan.md and generated the 5 functional-design artifacts under aidlc-docs/construction/u1-accounts-auth/functional-design/: domain-entities.md, business-logic-model.md, business-rules.md (AR-1..AR-18), frontend-components.md, testable-properties.md (PBT-01). Security Baseline + PBT-01 compliance evaluated (no blocking findings). Presented standard 2-option completion; awaiting approval to proceed to NFR Requirements."
+**Context**: CONSTRUCTION — U1 Accounts & Auth — Functional Design complete (awaiting approval)
+
+---
+
+## U1 Functional Design — Approved
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: "approve"
+**AI Response**: "Recorded approval of U1 Accounts & Auth Functional Design. Marked the stage [x] in aidlc-state.md. Proceeding to the next per-unit stage: NFR Requirements. Loading construction/nfr-requirements.md rules and U0 global NFR/tech-stack context to run a U1-focused NFR assessment (auth latency, session/refresh TTLs, rate-limit thresholds, availability) — tech stack itself already fixed in U0."
+**Context**: CONSTRUCTION — U1 Functional Design approved; entering NFR Requirements
+
+---
+
+## U1 NFR Requirements — Questions Answered + Artifacts Generated
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: [answered 4 NFR questions interactively] Q1=A Supabase default session + persistent, Q2=A Supabase default rate limits, Q3="explain me this please" then A best-effort MVP no SLA (after explanation), Q4=A defer security alerting to Operations.
+**AI Response**: "Ran U1 NFR Requirements. Noted tech stack already fixed in U0 (no new stack; only new dep = @supabase/ssr) and that U0-SEC-7 deferred auth rate-limit thresholds to U1. Presented 4 NFR questions interactively with recommendations; user asked for an explanation of Q3 (performance/availability targets) — explained p95/SLA meaning and the managed-platform rationale, then user chose best-effort MVP. All 4 = option A. Wrote answers back to u1-accounts-auth-nfr-requirements-plan.md and generated artifacts: nfr-requirements/nfr-requirements.md (U1-SEC-1..10, session, perf, availability/reliability, maintainability, usability) and nfr-requirements/tech-stack-decisions.md (no new stack + @supabase/ssr + Supabase Auth config settings). Security Baseline evaluated (no blocking findings; SEC-14 alerting deferred/tracked, MFA out-of-scope for MVP). Presented standard 2-option completion; awaiting approval to proceed to NFR Design."
+**Context**: CONSTRUCTION — U1 Accounts & Auth — NFR Requirements complete (awaiting approval)
+
+---
+
+## U1 NFR Requirements — Approved
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: "approve"
+**AI Response**: "Recorded approval of U1 NFR Requirements. Marked stage [x] in aidlc-state.md. Proceeding to NFR Design. Loading construction/nfr-design.md rules and U0 nfr-design artifacts (logical-components.md, nfr-design-patterns.md) for pattern continuity."
+**Context**: CONSTRUCTION — U1 NFR Requirements approved; entering NFR Design
+
+---
+
+## U1 NFR Design — Questions Answered + Artifacts Generated
+**Timestamp**: 2026-07-06T01:05:32Z
+**User Input**: [answered 2 NFR-design questions interactively] Q1=A SameSite=Lax, Q2=A specific Supabase project URL in CSP connect-src.
+**AI Response**: "Ran U1 NFR Design. Established that most patterns are inherited from U0 (RLS, JWT gate, deny-by-default, security headers, logging, fail-closed, PBT, CI) and the session/rate-limit/perf choices were fixed in NFR Requirements; documented category applicability (scalability/resilience/caching N/A). Surfaced the 2 genuinely open, security-relevant decisions that follow from frontend-direct auth and presented them interactively with recommendations; user chose both recommendations. Wrote answers to u1-accounts-auth-nfr-design-plan.md and generated nfr-design/nfr-design-patterns.md (cookie-session, SameSite=Lax, CSP widened to specific Supabase origin, two-layer gate, silent refresh, delegated brute-force/policy, non-enumerating fail-closed) and nfr-design/logical-components.md (new FE components: SSR clients, middleware gate, lib/auth validation+errors, auth UI; backend reused with one CSP config touch; data reused from U0). Security Baseline evaluated — no blocking findings (SEC-04/05/06/08/11/12/15 addressed; SEC-14 deferred). Presented standard 2-option completion; awaiting approval to proceed to Infrastructure Design (light)."
+**Context**: CONSTRUCTION — U1 Accounts & Auth — NFR Design complete (awaiting approval)
+
+---
+
+## U1 NFR Design — Approved
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: "oke so NFR desing I approve"
+**AI Response**: "Recorded approval of U1 Accounts & Auth NFR Design (session resumed 2026-07-09 — user first reviewed CSP/connect-src, SSR cookie-session, and cookie-vs-JWT concepts, then approved). Marked the stage [x] in aidlc-state.md and updated Current Stage to Infrastructure Design (light). NFR Design plan checkboxes already complete. Proceeding to the next per-unit stage: Infrastructure Design (light) — loading construction/infrastructure-design.md rules and U0 infrastructure-design artifacts for continuity."
+**Context**: CONSTRUCTION — U1 NFR Design approved; entering Infrastructure Design (light)
+
+---
+
+## U1 Infrastructure Design (light) — Question Answered + Artifacts Generated
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: [chose to Run the stage] then answered 1 infrastructure question interactively: Q1 = A (config-as-code — Supabase Auth settings in memorise-supabase/config.toml via Supabase CLI, version-controlled local+prod; dashboard fallback only).
+**AI Response**: "Ran U1 Infrastructure Design at light depth. Loaded construction/infrastructure-design.md rules and U0 infra artifacts (infrastructure-design.md, deployment-architecture.md) plus U1 nfr-design logical-components/patterns. Established that U1 provisions NO new infrastructure — every U1 logical component runs on U0's existing Vercel/Railway/Supabase; auth is Supabase-managed. Evaluated all infra categories: deployment/compute/storage/messaging/networking/monitoring/shared all inherited or already-decided (CSP connect-src fixed in NFR Design Q2; alerting deferred in NFR Requirements). Surfaced the single genuinely-open decision — how Supabase Auth settings are managed/reproduced — presented interactively with recommendation; user chose config-as-code (config.toml). Wrote answer to u1-accounts-auth-infrastructure-design-plan.md and generated infrastructure-design/infrastructure-design.md (component→infra mapping = all inherited; config-as-code auth settings table; config/secrets deltas; CI/CD/monitoring impact = none structural) and infrastructure-design/deployment-architecture.md (no topology change; new frontend-direct auth data path + Vercel middleware refresh; auth config.toml in promotion flow; unchanged scaling/DR). Security Baseline evaluated — no blocking findings (SEC-10/12 config-as-code + no repo secrets; SEC-14 alerting deferred/tracked). Marked plan checkboxes [x]. Presented standard 2-option completion; awaiting approval to proceed to Code Generation."
+**Context**: CONSTRUCTION — U1 Accounts & Auth — Infrastructure Design (light) complete (awaiting approval)
+
+---
+
+## U1 Infrastructure Design (light) — Approved
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: "I approve"
+**AI Response**: "Recorded approval of U1 Accounts & Auth Infrastructure Design (light). Marked the stage [x] in aidlc-state.md and updated Current Stage to Code Generation. This completes all U1 design stages. Proceeding to Code Generation — loading construction/code-generation.md rules and U1 design artifacts (functional design, nfr-design logical-components/patterns, infrastructure config-as-code decision) to build the Part 1 code generation plan (with checkboxes) for user approval before any code is written. Per aidlc-state.md, the U1 feature branch is to be cut at Code Generation."
+**Context**: CONSTRUCTION — U1 Infrastructure Design approved; entering Code Generation (Part 1 — Planning)
+
+---
+
+## U1 Code Generation — Part 1 Plan Created (Approval Prompt)
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: (none yet — awaiting plan approval)
+**AI Response**: "Loaded construction/code-generation.md rules and all U1 design artifacts (functional-design flows 1–6 + frontend-components + testable-properties, nfr-design logical-components + patterns, infrastructure-design config-as-code + CSP origin, nfr-requirements tech-stack-decisions). Created the U1 Code Generation Plan (Part 1) at aidlc-docs/construction/plans/u1-accounts-auth-code-generation-plan.md — 13 numbered steps with checkboxes, story traceability (US-01/02/03/04 + US-24/26), extension obligations (Security Baseline + PBT P1–P5), and scope. No code written yet. Presented the plan summary and standard 2-option completion; awaiting explicit approval before Part 2 (Generation)."
+**Context**: CONSTRUCTION — U1 Code Generation Part 1 (Planning) — awaiting plan approval
+
+---
+
+## U1 Code Generation — Part 1 Plan Approved; Entering Part 2 (Generation)
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: "continue"
+**AI Response**: "Recorded approval of the U1 Code Generation plan. Marked Part 1 (Planning) complete in aidlc-state.md. Proceeding to Part 2 (Generation): cutting feature/u1-accounts-auth from main and executing the 13 plan steps in order, marking each checkbox [x] on completion. Tests are generated but executed later in Build & Test. No commit will be made until the user requests it."
+**Context**: CONSTRUCTION — U1 Code Generation Part 2 (Generation) in progress
+
+---
+
+## U1 Code Generation — Part 2 (Generation) Complete
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: (none — generation work; awaiting review/approval)
+**AI Response**: "Executed all 13 plan steps on branch feature/u1-accounts-auth, marking each plan checkbox [x]. Created frontend auth code (pure lib/auth validation+errors with PBT P1–P5; lib/supabase SSR client/server/middleware + root middleware.ts route gate; (auth) route group + 6 auth components; (app) authed shell + placeholder; e2e Playwright specs) and tests; modified backend security.py (CSP connect-src widened to configured Supabase origin via build_csp + middleware __init__) and main.py; added backend test_security_headers.py; set Supabase Auth config-as-code in config.toml + memorise-supabase/README.md (dashboard fallback: HIBP, prod redirect URLs, templates); added AR-17 pgTAP test; removed superseded U0 app/page.tsx+test; updated root README + wrote code summary. Fixed issues found while verifying: PBT P3 arrow-body return bug, installed @supabase/ssr into node_modules, node test env for the middleware Headers check, SetAllCookies typing, eslint ignores for build/generated/e2e, ruff line length. Verified locally: frontend 29 tests pass + tsc/eslint/prettier clean; backend 7 tests pass + ruff/mypy clean (E2E + pgTAP execute in Build & Test). Raised 3 explicit review flags (cookie httpOnly under frontend-direct auth; CSP location backend vs frontend document; deferred E2E/integration execution). No commit made (awaiting user request). Presented standard 2-option completion; awaiting approval to complete U1 Code Generation."
+**Context**: CONSTRUCTION — U1 Code Generation Part 2 complete (awaiting approval)
+
+---
+
+## U1 — Local Environment Bring-up (post-generation setup support)
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: Series of setup questions — "how can i run my backend?", "but in my frontend I need to set up my supabase credentials?", "where is the anon key? how can i get it?", "i dont have the supabase command", supabase shim error (missing supabase-go), and port-conflict error; chose "Give MemoRise its own ports" when asked.
+**AI Response**: "Guided backend/frontend env setup. Installed working Supabase CLI via official tarball to ~/.local/share/supabase (AUR supabase-bin shipped only the shim, missing supabase-go). Diagnosed `supabase start` failures: (1) port 54322 collided with the already-running Orion/etl-local stack; (2) the CLI ignored memorise-supabase/config.toml because the files were flat, not under a supabase/ subdir. FIXED: restructured memorise-supabase into memorise-supabase/supabase/{config.toml,migrations,tests} (git mv for tracked files) and set custom 5532x local ports in config.toml ([analytics] disabled, [inbucket] on 55324) so MemoRise coexists with Orion. Started the stack successfully; migrations applied (profiles present). Created gitignored local env files memorise-back/.env and memorise-web/.env.local wired to the local stack (URL http://127.0.0.1:55321 + local demo anon/service keys/JWT). Verified: settings load, backend boots, GET /api/v1/health → ok, CSP header = default-src 'self'; connect-src 'self' http://127.0.0.1:55321. Updated root README, memorise-supabase/README.md, and u1-code-summary.md to reflect the supabase/ layout + 5532x ports. These are the only changes beyond the approved 13-step plan; flagged for reviewer as part of the pending U1 code-generation approval."
+**Context**: CONSTRUCTION — U1 local dev stack running; still awaiting U1 Code Generation approval
+
+---
+
+## U1 Code Generation — Approved + Committed
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: "okey approve, so commit now please"
+**AI Response**: "Recorded approval of U1 Accounts & Auth Code Generation (all 13 steps + local bring-up). Marked Code Generation [x] and U1 COMPLETE in aidlc-state.md; advanced Current Unit to U2 Decks & Cards. Committed the work to feature/u1-accounts-auth (Conventional Commits; NO AI authorship per repo convention/CONTRIBUTING.md; .env files remain gitignored). U1 is the 2nd of 6 units; next per-unit stage sequence begins with U2 Functional Design when the user resumes."
+**Context**: CONSTRUCTION — U1 COMPLETE (approved + committed); U2 Decks & Cards next
+
+---
+
+## U1 — PR #11 CI fixes
+**Timestamp**: 2026-07-09T10:43:45Z
+**User Input**: (CI feedback on PR #11)
+**AI Response**: "Opened PR #11 (feature/u1-accounts-auth → main). Two CI checks failed: (1) Backend — `ruff format --check` wanted to reformat app/core/security.py (a missing blank line before build_csp; I'd run `ruff check` locally but not `ruff format --check`); (2) Commit messages — commitlint `subject-case` rejected the docs commit subject that started with 'U1' (capitalized). Fixed both by rebuilding the branch's two commits via `git reset --soft main`: recommitted code (feat, format fix folded in) and recommitted docs with a lowercase subject ('docs(aidlc): record U1 ...'). Frontend + SBOM already passed. Force-pushed (--force-with-lease); CI re-running. Merged Dependabot CI-action PRs #2–#5 (by the user); npm-major PRs #6–#10 remain open (deferred; #7/#9/#10 already fail CI)."
+**Context**: CONSTRUCTION — U1 PR #11 CI remediation

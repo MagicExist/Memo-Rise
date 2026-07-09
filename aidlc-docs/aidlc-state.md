@@ -5,10 +5,10 @@
 - **Project Type**: Greenfield
 - **Start Date**: 2026-06-23T17:18:49Z
 - **Current Phase**: CONSTRUCTION
-- **Current Stage**: U0 MERGED to main (PR #1, squash `b9fc64e`); ready to start → U1 Accounts & Auth (Functional Design)
-- **Current Branch**: main (U0 merged; CI green)
+- **Current Stage**: U1 COMPLETE (approved + committed 2026-07-09) — U2 Decks & Cards next (Functional Design)
+- **Current Branch**: main (U0 merged; CI green). U1 feature branch to be cut at Code Generation.
 - **Remote**: origin = https://github.com/MagicExist/Memo-Rise.git · U0 PR #1 MERGED (squash-merged, branch deleted)
-- **Current Unit**: U0 complete (1 of 6). Next: U1 Accounts & Auth.
+- **Current Unit**: U2 Decks & Cards (3 of 6) — not started. U0 and U1 complete.
 
 ## Workspace State
 - **Existing Code**: No
@@ -61,7 +61,15 @@ Per unit, in sequence (each fully completed before the next). Legend: [x] done �
 - [x] Code Generation (approved + committed 2026-07-05) → US-27/28/29 implemented
 - [x] **U0 COMPLETE** — committed to `feature/u0-foundation` (1b316c5)
 
-**U1–U5:** pending (same per-unit stage sequence). Next: U1 Accounts & Auth.
+**U1 Accounts & Auth:**
+- [x] Functional Design (approved 2026-07-06; decisions: frontend-direct Supabase auth, @supabase/ssr cookies, Supabase-native rate-limit + breach check, non-blocking verification, minimal landing, local logout, minimal PBT)
+- [x] NFR Requirements (approved 2026-07-06; all managed-default: Supabase session/rate-limit defaults, best-effort perf, alerting deferred; new dep: @supabase/ssr)
+- [x] NFR Design (approved 2026-07-09; SameSite=Lax cookies, CSP connect-src=specific Supabase URL, two-layer gate, SSR clients + middleware)
+- [x] Infrastructure Design (light) (approved 2026-07-09; no new infra — all inherited from U0; Supabase Auth settings as config-as-code in config.toml)
+- [x] Code Generation (approved + committed 2026-07-09; 13 steps; frontend 29 tests + backend 7 tests green; local stack verified)
+- [x] **U1 COMPLETE** — committed to `feature/u1-accounts-auth`
+
+**U2–U5:** pending (same per-unit stage sequence).
 
 After all units:
 - [ ] Build and Test — EXECUTE (always)

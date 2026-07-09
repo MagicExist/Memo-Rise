@@ -1,0 +1,55 @@
+# Supabase CLI configuration (local development + config-as-code).
+# Schema is SQL-first: create migrations with `supabase migration new`,
+# test locally with `supabase db reset`, apply with `supabase db push`.
+# Auth settings are version-controlled here (U1, config-as-code) and applied via the CLI;
+# settings not expressible in config.toml are documented in README.md (dashboard fallback).
+
+project_id = "memorise"
+
+# Ports use the 5532x range (not the default 5432x) so this stack can run alongside another local
+# Supabase project (e.g. Orion/etl-local) without colliding.
+[api]
+enabled = true
+port = 55321
+schemas = ["public"]
+
+[db]
+port = 55322
+shadow_port = 55320
+major_version = 15
+
+[studio]
+enabled = true
+port = 55323
+
+[inbucket]
+enabled = true
+port = 55324
+
+[analytics]
+enabled = false
+
+[auth]
+enabled = true
+# Public site URL + allowed redirect targets. Local defaults below; production values are set
+# per environment (Vercel/Supabase). The reset flow redirects to <origin>/reset/confirm (US-03).
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/**"]
+# Session / JWT (Q1: Supabase defaults — access token ~1h, refresh-token rotation on).
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+# Email/password signup enabled; no anonymous sign-ins (US-01/02).
+enable_signup = true
+enable_anonymous_sign_ins = false
+# Password policy (Q4 / AR-1): minimum length 8. Breached-password (HIBP) protection is enabled
+# in the dashboard — it is not expressible in config.toml. See README.md.
+minimum_password_length = 8
+
+[auth.email]
+enable_signup = true
+# Verification is non-blocking (US-02, AR-5/6): first use is never gated on confirmation. Local dev
+# keeps confirmations off; production sends the email but still does not block sign-in.
+enable_confirmations = false
+
+# Rate limiting (Q2): Supabase defaults are used intentionally — NOT overridden here.
