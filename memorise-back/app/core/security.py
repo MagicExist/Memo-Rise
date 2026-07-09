@@ -16,8 +16,19 @@ from starlette.responses import Response
 # (strict presets for auth in U1 and AI in U4).
 limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
-_SECURITY_HEADERS = {
-    "Content-Security-Policy": "default-src 'self'",
+
+def build_csp(connect_src: list[str]) -> str:
+    """Build a least-privilege CSP (SEC-4/6).
+
+    U1 (frontend-direct auth) requires the browser to reach the Supabase origin, so `connect-src`
+    is widened to `'self'` plus the specific configured Supabase project URL(s) — never a wildcard,
+    and never `unsafe-inline`/`unsafe-eval`.
+    """
+    connect = " ".join(["'self'", *connect_src])
+    return "; ".join(["default-src 'self'", f"connect-src {connect}"])
+
+
+_STATIC_SECURITY_HEADERS = {
     "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
@@ -26,11 +37,18 @@ _SECURITY_HEADERS = {
 
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    def __init__(self, app: object, connect_src: list[str] | None = None) -> None:
+        super().__init__(app)  # type: ignore[arg-type]
+        self._headers = {
+            "Content-Security-Policy": build_csp(connect_src or []),
+            **_STATIC_SECURITY_HEADERS,
+        }
+
     async def dispatch(
         self, request: Request, call_next: Callable[[Request], Awaitable[Response]]
     ) -> Response:
         response = await call_next(request)
-        for header, value in _SECURITY_HEADERS.items():
+        for header, value in self._headers.items():
             response.headers.setdefault(header, value)
         return response
 
