@@ -35,6 +35,6 @@
     "@testing-library/react": "^16.0.0",
     "@testing-library/jest-dom": "^6.5.0",
     "jsdom": "^25.0.0",
-    "fast-check": "^3.22.0"
+    "fast-check": "^4.9.0"
   }
 }
